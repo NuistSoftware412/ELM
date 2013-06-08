@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sat Apr 06 13:07:16 CST 2013
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=ELM2013_Hadoop_fat_2.jar
+manifest.mergeall=true
+manifest.mainclass=D_ELM_MR
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
