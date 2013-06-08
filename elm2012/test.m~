@@ -1,0 +1,6 @@
+svm_trn=load('svm_trn');
+P=svm_trn';
+svm_trn_group=load('svm_trn_group');
+T=svm_trn_group';
+net=newff(svm_trn,T,20);
+net = train(net,);

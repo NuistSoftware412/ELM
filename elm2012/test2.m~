@@ -1,0 +1,5 @@
+tmp = t-r
+for i=1:3000
+    if tmp(i) == 0,
+        count
+end

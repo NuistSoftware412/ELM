@@ -1,0 +1,5 @@
+[TrainingTime, TrainingAccuracy] = elm_train('tmp', 1, 100, 'sin');
+svmtrain(svm_trn_group, svm_trn, '-c 1 -g 0.1 -b 1');
+
+net=newff(P,T,6);
+net = train(net,P,T);

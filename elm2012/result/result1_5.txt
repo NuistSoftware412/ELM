@@ -1,0 +1,19 @@
+ [ af,num,accuracy,x,y ] = method( 10,400,'trn_all','tst_all' )
+
+step = 3;
+
+num_of_trial = 5;
+
+af =
+
+tribas
+
+
+num =
+
+   391
+
+
+accuracy =
+
+    0.9800

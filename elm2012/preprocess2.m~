@@ -1,0 +1,23 @@
+function [ output,dataset ] = preprocess2()
+%PREPROCESS2 Summary of this function goes here
+%   Detailed explanation goes here
+% This function is to preprocess the image data
+
+
+rand_sequence=randperm(s);
+temp_dataset=dataset;
+dataset=temp_dataset(rand_sequence, :);
+for i=1:z
+    dataset(:,i)=(dataset(:,i)-min(dataset(:,i)))/(max(dataset(:,i))-min(dataset(:,i)))*2-1;
+end
+output=input;
+l=1;
+for i=1:x
+    for j=1:y
+        output(i,j,:)=dataset(l,:);
+        l=l+1;
+    end
+end
+
+end
+

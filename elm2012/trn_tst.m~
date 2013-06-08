@@ -1,0 +1,28 @@
+function [ result ] = trn_tst( trn_data,tst_data )
+%TRN_TST Summary of this function goes here
+%   Detailed explanation goes here
+% Training Time, Testing Time, Testing Accuracy, Testing Accuracy Var
+size=[500,1000,1500,2000,2500,3000];
+result = zeros(length(size),12);
+num_of_trial = 10;
+trnd=load(trn_data);
+tstd=load(tst_data);
+training_time=zeros(num_of_trial,1);
+testing_time=zeros(num_of_trial,1);
+testing_accuracy=zeros(num_of_trial,1);
+for i=1:length(size)
+    trnd1=trnd(1:size(i),:);
+    tstd1=tstd(1:size(i),:);
+    save 'tmp_trn' trnd1 -ascii;
+    save 'tmp_tst' tstd1 -ascii;
+    for j=1:num_of_trial
+        [TrainingTime, TestingTime, TrainingAcc, TestingAcc] = elm('tmp_trn', 'tmp_tst', 1, 200,'sin');
+        training_time(j)=TrainingTime;
+        testing_time(j)=TestingTime;
+        testing_accuracy(j)=TestingAcc;
+    end
+    result(i,1)=mean(training_time);
+    result(i,2)=
+end
+end
+

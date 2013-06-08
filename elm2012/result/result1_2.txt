@@ -1,0 +1,13 @@
+af =
+
+tribas
+
+
+num =
+
+   470
+
+
+accuracy =
+
+    0.9809
