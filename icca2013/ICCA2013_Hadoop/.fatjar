@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Tue Dec 04 22:17:16 CST 2012
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=/home/jychen/main/ICCA2013_Hadoop_Phase2_Single.jar
+manifest.mergeall=true
+manifest.mainclass=zju.cs.icca2013.Phase2_Single
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=
