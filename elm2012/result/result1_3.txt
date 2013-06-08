@@ -1,1 +1,0 @@
-[ af,num,accuracy,x,y ] = method( 10,300,'trn_all','tst_all' )

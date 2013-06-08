@@ -1,5 +1,0 @@
-Urban:  15234  0.130849
-Water:  17707  0.152091
-Vegetation:  34080  0.292723
-Arable land:  21952  0.188552
-Wetlands:  27451  0.235785

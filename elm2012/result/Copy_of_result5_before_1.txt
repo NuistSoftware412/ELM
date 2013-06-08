@@ -1,3 +1,0 @@
-use data : trn_data.dt
-
-[TrainingTime,TrainingAccuracy] = elm_train('trn_all2', 1, 500, 'sin')

@@ -1,1 +1,0 @@
-[TrainingTime,TrainingAccuracy] = elm_train('trn_all', 1, 200, 'sin')
