@@ -1,0 +1,29 @@
+function [P, T, TV] = pageblock_data
+    %Obtain Random P, T
+    
+    load train;
+    load test;
+    
+
+
+    fid = fopen('train.data','w');
+    for i=1:size(train,1)
+        fprintf(fid,'%2.8f ',(train(i,11)-min(train(:,11)))/();
+        for j=1:size(train,2)
+%            fprintf(fid,' %d:%2.8f',j, P1(i,j));    % for SVM
+            fprintf(fid,' %2.8f', P1(i,j));    % for ELM
+        end
+            fprintf(fid,'\n');
+        end
+    fclose(fid);
+
+    fid = fopen('test.data','w');    
+    for i=1:size(X,1)
+        fprintf(fid,'%2.8f ',Y(i,1));
+        for j=1:size(X,2)
+%            fprintf(fid,' %d:%2.8f',j, X(i,j));     % for SVM
+            fprintf(fid,' %2.8f', X(i,j));     % for ELM
+        end
+            fprintf(fid,'\n');
+        end
+    fclose(fid);

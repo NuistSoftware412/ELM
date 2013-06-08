@@ -1,0 +1,7 @@
+function resample
+x=100:50:1000;
+y=[0.76517408,0.77960199,0.783457705,0.803731,0.84054723,0.8328358,0.84154227,0.842537,0.85584575,0.854726,0.86268655,0.858706,0.85708955,0.862189,0.8600746,0.865208,0.878107,0.86990398,0.871049735];
+plot(x,y,'-k*');
+xlabel('Resample Size');
+ylabel('Average Testing Accuracy');
+title('Relationship between Resample Size and Testing Accuracy for the Sample Set of Magic04');
