@@ -1,0 +1,5 @@
+Nowadays, land-cover change detection plays a more and more important role in environment protection and many other fields. 
+However, the current land-cover change detection methods encounter the problem of low effiency and can't be expanded to parallel computing to deal with large scale remote sensing(RS) data. 
+To solve the above problems, we propose a novel ELM-based land-cover change detection method, in which the supervised classification capability, fast training speed and high generalisation performance of ELM is utilized to efficiently train the RS imagery classifier and the classifier is applied to time-series satellite imageries' analysis. 
+In our experiment, we apply our method to the analyis of rapid land use change in Taihu Lake Area over the past decade due to accelerated urbanization.
+

@@ -1,0 +1,88 @@
+\begin{thebibliography}{10}
+
+\bibitem{SINGH1989}
+A.~SINGH, ``Review article digital change detection techniques using
+  remotely-sensed data,'' {\em International Journal of Remote Sensing},
+  vol.~10, no.~6, pp.~989--1003, 1989.
+
+\bibitem{Weng2002}
+Q.~Weng, ``Land use change analysis in the zhujiang delta of china using
+  satellite remote sensing, gis and stochastic modelling,'' {\em Journal of
+  Environmental Management}, vol.~64, no.~3, pp.~273 -- 284, 2002.
+
+\bibitem{Read2002}
+J.~M. Read and N.~S.-N. Lam, ``Spatial methods for characterising land cover
+  and detecting land-cover changes for the tropics,'' {\em International
+  Journal of Remote Sensing}, vol.~23, no.~12, pp.~2457--2474, 2002.
+
+\bibitem{Lunetta2002}
+R.~S. Lunetta, J.~Ediriwickrema, D.~M. Johnson, J.~G. Lyon, and A.~McKerrow,
+  ``Impacts of vegetation dynamics on the identification of land-cover change
+  in a biologically complex community in north carolina, usa,'' {\em Remote
+  Sensing of Environment}, vol.~82, no.~2–3, pp.~258 -- 270, 2002.
+
+\bibitem{Demir2011}
+B.~Demir, F.~Bovolo, and L.~Bruzzone, ``Detection of land-cover transitions in
+  multitemporal remote sensing images with active-learning-based compound
+  classification,'' {\em Geoscience and Remote Sensing, IEEE Transactions on},
+  vol.~PP, no.~99, pp.~1 --12, 2011.
+
+\bibitem{Clifton2003}
+C.~Clifton, ``Change detection in overhead imagery using neural networks,''
+  {\em Applied Intelligence}, vol.~18, pp.~215--234, March 2003.
+
+\bibitem{Patra2006}
+S.~Patra, S.~Ghosh, and A.~Ghosh, ``Unsupervised change detection in
+  remote-sensing images using one-dimensional self-organizing feature map
+  neural network,'' in {\em Information Technology, 2006. ICIT '06. 9th
+  International Conference on}, pp.~141 --142, dec. 2006.
+
+\bibitem{Patra2007}
+S.~Patra, S.~Ghosh, and A.~Ghosh, ``Unsupervised change detection in
+  remote-sensing images using modified self-organizing feature map neural
+  network,'' in {\em Computing: Theory and Applications, 2007. ICCTA '07.
+  International Conference on}, pp.~716 --720, march 2007.
+
+\bibitem{Chen2008}
+K.~Chen, C.~Huo, Z.~Zhou, and H.~Lu, ``Unsupervised change detection in high
+  spatial resolution optical imagery based on modified hopfield neural
+  network,'' in {\em Natural Computation, 2008. ICNC '08. Fourth International
+  Conference on}, vol.~4, pp.~281 --285, oct. 2008.
+
+\bibitem{Huang2012}
+G.-B. Huang, H.~Zhou, X.~Ding, and R.~Zhang, ``Extreme learning machine for
+  regression and multiclass classification,'' {\em Systems, Man, and
+  Cybernetics, Part B: Cybernetics, IEEE Transactions on}, vol.~42, pp.~513
+  --529, april 2012.
+
+\bibitem{Huang2000}
+G.-B. Huang, Y.-Q. Chen, and H.~A. Babri, ``Classification ability of single
+  hidden layer feedforward neural networks,'' {\em IEEE Transactions on Neural
+  Networks}, vol.~11, pp.~799--801, 2000.
+
+\bibitem{Zhang2007}
+R.~Zhang, G.-B. Huang, N.~Sundararajan, and P.~Saratchandran, ``Multicategory
+  classification using an extreme learning machine for microarray gene
+  expression cancer diagnosis,'' {\em IEEE/ACM Trans. Comput. Biol.
+  Bioinformatics}, vol.~4, pp.~485--495, July 2007.
+
+\bibitem{Huang2006}
+G.-B. Huang, ``Universal approximation using incremental constructive
+  feedforward networks with random hidden nodes,'' 2006.
+
+\bibitem{Pal2008}
+M.~Pal, ``Extreme learning machine for land cover classification,'' {\em CoRR},
+  vol.~abs/0802.1412, 2008.
+
+\bibitem{Jun2011}
+W.~Jun, W.~Shitong, and F.-l. Chung, ``Positive and negative fuzzy rule system,
+  extreme learning machine and image classification,'' {\em International
+  Journal of Machine Learning and Cybernetics}, vol.~2, pp.~261--271, 2011.
+\newblock 10.1007/s13042-011-0024-1.
+
+\bibitem{YuXiu-Lan1999}
+Z.~J.-L. J. X.-G. Yu~Xiu-Lan, Qian Guo-Hui, ``Learning sample selection in
+  multispectral remote sensing image classification using the bp neural
+  network,'' 1999.
+
+\end{thebibliography}

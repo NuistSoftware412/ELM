@@ -1,0 +1,473 @@
+\documentclass{elsart}
+
+\input setbmp
+\input seteps
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{enumerate}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{rotating}
+
+\usepackage{algorithmic}
+\usepackage{algorithm}
+
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\begin{document}
+\bibliographystyle{ieeetr}  
+
+\begin{frontmatter}
+
+\title{Time-series Processing of Large Scale Remote Sensing Data with Extreme Learning Machine}
+
+\author[label1]{Jiaoyan Chen},
+\author[label1]{Huajun Chen}
+\ead{huajunsir@zju.edu.cn}
+\corauth[cor1]{Corresponding author}
+and
+\author[label1]{Cong Fang}
+\address[label1]{College of Computer Science and Technology, Zhejiang University, Hang Zhou, China, 310027}
+
+\begin{abstract}
+Nowadays, land-cover change detection plays a more and more important role in environment protection and many other fields.
+However, the current land-cover change detection methods encounter the problem of low effiency and can't be expanded to parallel computing to deal with large scale remote sensing(RS) data.
+To solve the above problems, we propose a novel ELM-based land-cover change detection method, in which the supervised classification capability, fast training speed and high generalisation performance of ELM is utilized to efficiently train the land-cover classifier and apply the classifier to time-series satellite imageries' analysis.
+In our experiment, we apply our method to the analyis of rapid land use change in Changjiang River Delta over the past decade due to accelerated urbanization.
+\end{abstract}
+
+\begin{keyword}
+Extreme learning machine, Remote Sensing, Classification, Change Detection, Time-series.
+\end{keyword}
+
+\end{frontmatter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%        Introduction      %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Introduction}
+Nowdays, the available time-series RS images provide a new way for land-cover change detection which is widely required in various fields.
+However, except for the traditional challenge of high accuracy, large scale RS data processing also requires the land-cover change detection method to be highly efficient and scalable. 
+This paper proposes a novel elm-based land-cover change detection method with faster processing speed, high detection accuracy and less human intervene. 
+
+\subsection{Land-cover Change Detection with Time-series RS Images}
+Change detection is the process of identifying differences in the state of an object or phenomenon by observing it at different times\cite{SINGH1989}.
+With the development of satellite technology, massive time-series high resolution multi-spectral RS images are available for applications.  
+By comparing two sets of RS images, taken of the same area at different time, we can manually handle the change detection job by view.
+In fact, it is possible for the computer to process the digital RS images, and provide an automatical change detection technology, which is available for large scale processing of RS images.
+In summary, time-series RS image-based land-cover change detection method is to identifiy the interesting land-cover changes between "before" time imagery and "after" time imagery through RS image digital processing and comparison of land-cover mappings in an automatical way.
+\par
+
+In the recent decades, timely and accurate change detection of Earth's surface features plays a more and more important role in better decision making.
+Automatic change detection can be used in such diverse applications as land usage analysis, disaster monitoring, snow-melt measurements, forest coverage monitoring and other environment changes. 
+Especially, land-cover change detection is one of the major direction of change detection application. 
+Various papers\cite{Weng2002}\cite{Read2002}\cite{Lunetta2002} have presented their work of applying change detection technology to the analysis of land-use and land-cover. 
+Ross S. Lunetta\cite{Lunetta2002} performed the change detection experiment in the biologically complex landscape of the Neuse River Basin, North Carolina using Landsat5 and Landsat7 imagery collected in May of 1993 and 2000. 
+Another typcial application is performed by Qihao Weng\cite{Weng2002}, to analysis the rapid land use change taken place in Zhujiang Delta over the past decades with the help of change detection technology.
+
+\subsection{Challenges of Land-cover Change Detection}
+In the applications of RS imagery, land-cover change detection has been a problem for some time.
+Among all the factors that cause land-cover change detectoin unavailable to real situations, change detection method or algorithm used play a key role.
+Traditionally, the main challenge to land-cover change detection methods is the detection accuracy.
+However, with increase scale of RS images and these images' high resolution, the method's processing speed and scability rise to be another two major challenges. 
+\par 
+Presently, large data processing has become a hot research topic of computing science. Similarly, in the field of RS data processing, increasing data size also brings some new challenges to processing methods. On one hand, efficient processing method is one of the best solutions to reduce processing time. On the other hand, parallel computing or distributed computing to deal with large scale RS data. In order to support parallel computing, our method is disigned to be as automatic as more, with least human intervene.
+
+\subsection{Major Contributions of ELM-based method}
+This paper's major contribution is to propose a novel ELM-based method for land-cover change detection. 
+On one hand, few applications of ELM are done in the area of RS data processing, not alone the ELM-based method for time-series RS imagery processing.
+In this paper, the change detection application with ELM-based method successfully analysises the rapid land use change in Taihu Lake Area over the past decade due to accelerated urbanization.
+Especially, estimation of the expansion of urban area from the year 2001 to the year 2008 is given in our application.
+On the other hand, the land-cover change detection result is evaluated and compared to the current methods, which use the classifier of SVM and BP network.
+Through the comparison, we prove our method's advantages of fast networking training and high generalisation performance, which mean it can be applied to large scale RS data processing.
+What's more, from the analysis of our method and experiments, we can find that our ELM-based method detects the land-cover change totally automatically with least human intervene, which enables the method to be expanded to parallel computing.
+\par
+ELM is a recently proposed and widely used machine learning method, with the capability of multiclass classification and universal approximation\cite{Huang2012}\cite{Huang2000}\cite{Zhang2007}\cite{Huang2006}.
+Our application sucessfully proves that ELM can be applied in time-series RS data processing and the ELM-based method can detect the land-cover change accurately. 
+Moreover, through our our network training and testing experiments, we show the advantages of ELM compared to other traditional neural network, like SVM and BP network.
+In conclusion, ELM is firestly applied to time-series RS data intelligent processing, and with its fast speed of training, high generalisation and least manual intervene, we design our novel land-cover change detection method to overcome the challenges of large scale RS data processing. 
+
+
+
+
+\section{Related Work}
+\subsection{Methods for Land-cover Change Detection}
+Land usage analysis and land cover mapping has long been an area of research focus, and a wide range of methods including cross-correlation analysis, post-classification, image differencing, image ratioing, principal components analysis and so on have be explored.
+Both the traditional methods of post-classification and cross-correlation determine the land-cover change through the "before" time and "after" time classifiction map, and produce comparable result. 
+Although both methods are more automatic than the others like image differencing, the unsupervised classifiers used result in low accuracy, which greatly limits its application in change detection, while the traditional supervised classifiers used lead to more human intervene.
+The methods of image differencing, image ratioing and principal components analysis involve transformations of the original spectral bands so as to enhance the land cover changes.
+These methods and their improvement do increase the accuracy of land-cover change detection, but it is limited to small scale data processing and are lack of automation. 
+\par
+
+With the advances of machine learning, several alternative land-cover change detection methods using neural network are proposed and applied in the analysis of landscape. 
+Presently, both supervised and unsupervised neural network algorithms have made progress.
+Compared to unsupervised land-cover transitions detection methods, the supervised ones provide more information about the kinds of transitions that occured on the ground and are less affected by the difference atmospheric conditions, sensor calibration, and ground condition\cite{Demir2011}\cite{Clifton2003}
+The paper\cite{Clifton2003} presents a technique for using predictive modeling, which predicates "before" and "after" pixel value, to identify unusual changes in imageries.
+Begum Demir\cite{Demir2011} present a novel iterative active learning(AL) technique aimed at defining effective multitemporal training sets to be used for the supervised detection of land-cover transitions in a pair of time-series RS imageries.
+In comparison, unsupervised approaches require fewer manual intervenes\cite{Patra2006}\cite{Patra2007}\cite{Chen2008}, and are quite suitable in the situations that the ground-truth is always unavailable.
+However, the low accuracy of unsupervised classification and predication severely limit the application of unsupervised approaches\par
+Although the classification and predication capability of neural network brings much improvement to the traditional land-cover change detection methods, the common and widely applied neural netwokrs, like BP network and SVM, exist several inadequacies.
+The most three important aspects that exist room for improvement may be the low speed of training, low generalization and human intervene.
+\subsection{ELM for Remote Sensing Application}
+Presently, little work of applying ELM to the field of RS imagery processing has been done. 
+Mahesh Pal\cite{Pal2008} did the land cover supervised classification experiment with ELM using remote sensing images.
+However, only the classification accuracy and computational cost of ELM is tested simply and compared to BP network, and no application of ELM is designed.
+Wu Jun\cite{Jun2011} revealed the equivalence between ELM and the positive and negative fuzzy rule system. 
+Moreover, Wu Jun indicate the claim that ELM can be naturally used for training the positive and negative fuzzy rule system quickly for image classification.
+Although ELM is applied to train the network for RS image classification, no time series images processing work are tried, not along large scale RS iamge processing.
+
+
+\section{ELM-based Method for Land-cover Change Detection}
+In this paper, we propose our new land-cover change detection method based on extreme learning machine using time-series RS images.
+The change detection is calculated through the comparison between "before" time and "after" time land-cover mapping, which is the result of land-cover classification of RS images.
+With the high speed of network training and high generalisation performance of classification, the new method has advantage of high processing efficiency and least human intervene, compared to the traditional neural network based methods.
+
+\subsection{Land-cover Change Detection Method}
+The whole land-cover change detection method can be divided into two components: training unit and detection unit as shown in Figure 1.
+Training unit is to build an ELM networking using preprocessed training and testing samples, which has adjusted hidden node number and can be directly applied to real remote sensing image classification with the highest generalisation performance.
+While the detection unit firstly calculates both "before" time land-cover mapping and "after" time land-cover mapping through the classification of time-series RS imageries using the trained network, and then works out the change detection statistics and change map by means of comparing the pair of time-series land-cover mapping.
+\begin{figure}[tbh]
+%\centereps{5.0in}{4.0in}{method.eps}
+\begin{center}
+\includegraphics[width=15cm]{method.eps}
+\caption{ELM-based Land-cover Change Detection Method}
+\label{method}
+\end{center}
+\end{figure}
+\par
+
+\subsubsection{Land-cover Classification and Samples}
+According to different terrains area and resolution of remote sensing images, the land-covery can be classified into specific categories. 
+In fact, in order to assure the precision, statistical property and representative of the sample, training sample of each category should be selected through visual interpretation and field survey\cite{YuXiu-Lan1999}.
+In our application, according to the investigation of land-cover of Taihu Lake Area and the landsat imagery' resolution, we classify the land-cover into five types as described in Table 1.
+\begin{table}[h]
+\scriptsize{
+\begin{center}
+\begin{tabular}[bt]{|c|c|c|}\hline
+
+Ground object category	& Image features	& Ground object description \\ \hline
+Urban			& Purple, faint red	& road or building \\ \hline
+Water			& Blue or deep blue	&River or pond \\ \hline
+Vegetation		& Deep Green, deep Yellow		& Forest,Hill \\ \hline
+Arable land		& Green, light green, cyan	& land for agriculture \\ \hline
+Wetlands		& Black		& Wetlands \\ \hline
+\end{tabular}
+\caption{Image Interpretation of Each Ground Object Category}
+\label{specification}
+\end{center}
+}
+\end{table}
+\par
+
+
+To represent the categories of the land cover, every type of the result is assigned to an integer, ranging from 1 to 5.
+As we use multi-spectral RS images, every pixel is multi-dimensional, and thus every sample can be described:
+$$
+\mathbf{x}_i=\left[x_{i1},x_{i2},...,x_{in}  \right]^T \in \mathbf{R}^n  \\
+$$
+$$
+\mathbf{t}_i = f(x) = 
+	\begin{cases} 
+	1, & \mbox{if type is Urban} \\ 
+	2, & \mbox{if type is Water} \\
+	3, & \mbox{if type is Vegetation} \\
+	4, & \mbox{if type is Arable Land} \\
+	5, & \mbox{if type is Wetlands} 
+	\end{cases}
+$$
+where $\mathbf{x}_i$ is the input, $\mathbf{t}_i$ is the output, $n$ is the number of bands of the RS imagery, i ranges from 1 to $N$, and $N$ is the number of samples.
+In order to obtain enough training data, we annotate five $20\times20$ squares in the chosen RS image by visual, each of which represents one type of land cover.
+In result, $20\times20\times5$ number of samples are provided for the ELM network training, namely, $N=4500$.
+Enough samples for network testing can also be obtained in a similar way, but from different image individuals in the same image type, in order to assure that the network has enough gereralization performance to fulfill large-scale change detection. 
+\par
+
+\subsubsection{Incremental Training Unit}
+ELM network with too few hidden nodes has no capability to achieve enough training classification accuracy, while too many hidden nodes will cause over-fitting, causing low testing classification accuracy, as well as high testing time. 
+In the training unit of our method, an incremental algorithm, with network testing is proposed to adjust the number of hidden nodes and activation function, finally to obtain an ELM network with highest generalization performance.
+\begin{algorithm}
+\caption{Incremental ELM Training Algorithm}
+\label{alg1}
+\begin{algorithmic}
+\REQUIRE Given a training samples set 
+$\chi = \{ (\mathbf{x}_i, \mathbf{t}_i) | \mathbf{x}_i \in \mathbf{R}^n, \mathbf{t}_i \in R^m, i=\{1,\cdots,N\}\}$, 
+a testing samples set 
+$\psi = \{ (\mathbf{x}_i, \mathbf{t}_i) | \mathbf{x}_i \in \mathbf{R}^n, \mathbf{t}_i \in R^m, i=\{1,\cdots,\widehat{N}\}\}$, 
+activation function $g(x)$, 
+maximum hidden node number $M_{max}$, 
+minimum hidden node number $M_{min}$,
+increasing step $step$,
+training times of every step $num$: 
+\STATE Step 1) \textbf{Initialization:} Let $M=M_{min}$, testing accuracy $E=0$, number of hidden nodes with highest testing accuracy $M_{highest} = 0$, highest testing accuracy $E_{highest}=0$
+\STATE Step 2) \textbf{Learning Step}:
+	\WHILE{$M<M_{highest}$}
+	\STATE a) increase by one the number of hidden nodes $M: M=M+step$
+   	\STATE b) training the new network $num$ times with the training samples set $\chi$
+	\STATE c) calculate the average testing accuracy $E$ of the $num$ trained networks with the testing samples set $\psi$
+	\IF{$E > E_{highest} $}
+	\STATE d) $E_{highest} \leftarrow E$ 
+	\STATE e) $M_{highest} \leftarrow M$
+	\ENDIF
+	\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+\par
+
+
+\subsubsection{Detection Unit through Time-series Mappings Comparison}
+In the detection unit of our method, the classified "before" time land-cover mapping and "after" time land-cover mapping are compared to generated the land-cover transition map, namely the change detection result.
+Using the ELM network, builded in the training unit, the input time series RS imageries are classified into five categories of land-cover, with computing every pixel's classification.
+Known every pixel's land-cover type, we can draw land-cover mappings, which visually display the coverage of the land surface.
+Moreover, land-cover classification pie charts are computed to accurately compare the coverage of every land-cover category.\par
+
+In the process of land-cover mappings comparsion, both the trends of every land-covery category and every location's land-covery transition can be calcuated.
+In our application, as urbanization information is the main focus of decision makers, the expansion map of urban area is drawn.
+As format format of change detection result, the whole area land-cover transition map can be drawn, which visually display the change of land-cover of every pixel.
+\par
+
+\subsection{ELM for Classification}
+ELM is a recently proposed and widely used machine learning method, with the capability of multiclass classification and universal approximation\cite{Huang2012}\cite{Huang2000}\cite{Zhang2007}\cite{Huang2006}.
+It is famous for its high speed of training and high generalisation performance for classification, as well as other characteristics like less human intervention.
+In short, ELM algorithm is to minimize the training error as well as the norm of the output weights\cite{Huang2004}\cite{Huang2006a}, and thus to achieve better generalization performance. 
+$$
+Minimize: \begin{Vmatrix} \mathbf{H}\beta - \mathbf{T} \end{Vmatrix}^2 and \begin{Vmatrix} \beta \end{Vmatrix}
+$$
+That means
+$$
+\mathbf{H}\beta = \mathbf{T},
+$$
+where
+$$
+\mathbf{H}(\mathbf{w}_1,...,\mathbf{w}_M,b_1,...,b_M,\mathbf{x}_1,...,\mathbf{x}_N) = 
+\begin{bmatrix}
+g(\mathbf{w}_1 \cdot \mathbf{x}_1 + b_1) & \cdots & g(\mathbf{w}_M \cdot \mathbf{x}_1 + b_M) \\
+\vdots & \ddots & \vdots \\
+g(\mathbf{w}_N \cdot \mathbf{x}_1 + b_1) & \cdots & g(\mathbf{w}_M \cdot \mathbf{x}_N + b_N)
+\end{bmatrix}_{N \times M}, 
+$$
+$$
+\beta = \begin{bmatrix}\beta_i^T \\ \vdots \\ \beta_M^T \end{bmatrix}_{M \times m},  \mathbf{T} = \begin{bmatrix}\mathbf{t}_1^T \\ \vdots \\ \mathbf{t}_N^T \end{bmatrix}_{N \times m} \mbox{ and } 
+$$
+As the $M$ hidden nodes, namely the parameters $\mathbf{w}_i$ and $\mathbf{b}_i$, are randomly generated, we can directly calculate the left parameters of the neural network, $\beta_i$, through the following formula:
+$$
+	\widehat{\beta} = \mathbf{H}^{\dagger}\mathbf{T},
+$$ 
+where $H^{\dagger}$ is the Moore-Penrose generalized inverse of matrix $\mathbf{H}$.
+\par
+
+
+\section{Evaluation}\label{benchmarkexperiment}
+\subsection{Incremental ELM Training}
+In our experiments, we will firstly use our incremental ELM training algorithm to train the ELM network with the highest generalisation performance.
+The key factors that affect ELM network's generalisation performance are the hidden node number and activation function.\par
+Firstly, we prepare our training and testing samples in the following way.
+The pair of time-series imageries, both token by the satellite of LANDSAT-5 with the sensor mode of TM, cover the same area, namely Taihu Lake area in east China.
+The "before" time imagery is token on Dec. 25, 2001, while the "after" time imagery is token on Feb. 28, 2008, as shown in Figure 2(a)(b).
+Through the investigation of land-cover of Taihu Lake area, we label five different land-cover types on the time-series RS imageries manually.  
+To get the training and testing data sets, $20\times20$ squares with different land-cover types are labeled on both the "before" and "after" time imageries as shown in Firgure 2(c).
+In this experiment, we collect a training samples set $\chi$ as well as a testing samples set $\psi$ with the size of 3000.
+In detail, every sample is a four elements tuple, in which the first three elements are the RGB values of the labeled pixel, while the last element is the land-cover group of that pixel. 
+\begin{figure}[H]
+\centering
+\subfigure["Before" Time]{
+\label{Fig.sub.1}
+\includegraphics[width=0.4\textwidth]{bi.eps}}
+\subfigure["After" Time]{
+\label{Fig.sub.2}
+\includegraphics[width=0.4\textwidth]{ai.eps}}
+\subfigure[Samples of Different Land-cover Types]{
+\label{Fig.sub.2}
+\includegraphics[width=0.8\textwidth]{samples.eps}}
+\caption{Original Time-series RS Imageries}
+\label{Fig.lable}
+\end{figure}
+\par
+
+We incrementally train and test the ELM network with the hidden node number increasing from 10 to 400 three by three. 
+Moreover, every network is trained and tested 3 times and the average testing accuracy are calculated to assure the accuracy.
+The finall training result is presented in Figure 3, which shows the networks' testing accuracy trend with increasing hidden node number and different activative function.
+From the figure we can firstly conclude that all the activate functions, except for hardlim, performs similarly all along the way that the hidden node number increases.
+Secondly, the average testing accuracy of the networks with the activative functions of sig, sin, tribas and hardlim, improves greatly before the hidden node number reaches 100, but are stabilized when the hidden node number reaches about 150.
+Finally, we can see that choosing tribas as the activative function and 350 to 400 hidden node number brings a little higher testing accuracy, which is about 98\%, if the application can accept the increase of training and testing time.  
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{itr.eps}
+\caption{Incremental ELM Training Result.}
+\label{method}
+\end{center}
+\end{figure}
+\par
+
+\subsection{Land-cover Classification Performance of ELM}
+The most outstanding advantages of ELM network are its fast learning spead and high generalisation performance, which are also the two key factors that our land-cover change detection method based on.
+In this experiment, we compare ELM to BP and SVM in the application of RS imagery land-cover classification. 
+\par
+
+One factor that we will compare is their training time, with their high generalisation performance ensured.
+To start with, we set the hidden node number of ELM network to 100 and use sin as the active function, which can assure testing accuracy to be more than 95\% when 3000 training samples and 3000 testing samples are used for experiment.
+Similarly, we adjust both the parameters of SVM and BP networks to assure their testing accuracy ranging between 0.95 and 0.96 using the same training and testing samples as ELM network.
+Moreover, we compare the training time of all the three methods using increasing training data size, and to specific scale of training data set, multi-training is performed and the average training time is calculated as the finall result.
+The training time comparison result can be seen in Figure 4.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{tt.eps}
+\caption{Average Training Time Comparision. }
+\label{method}
+\end{center}
+\end{figure}
+\par
+
+From the figure we can argue that ELM always costs the least training time.
+With the increasing training data size, the training time of BP network increases greatly and are unstable.
+From the data of Figure 4 and Table 2, we can see the BP network takes about 47 times more time than ELM to learn. 
+Although SVM network training is much faster than BP network, it still takes nearly 7 times more time to learn than ELM.
+\par
+
+\begin{table}[h]
+\scriptsize{
+\begin{center}
+\begin{tabular}[bt]{|p{0.5cm}||p{1cm}|p{1cm}|p{1.1cm}||p{1cm}|p{1cm}|p{1.1cm}||p{1cm}|p{1cm}|p{1.1cm}|}\hline
+
+ & \multicolumn{3}{|c||}{ELM} & \multicolumn{3}{|c||}{BP} & \multicolumn{3}{|c|}{SVM} \\ \cline{2-10}
+Data Size &Training Time &Testing Time &Testing Acc &Training Time &Testing Time &Testing Acc &Training Time &Testing Time &Testing Acc \\ \hline
+500 &0.018000 &0.006000 &97.3200\% &0.031253 &0.005436 &93.4000\% &1.474384 &0.008222 &95.8000\% \\ \hline
+750 &0.027000 &0.006000 &97.1333\% &0.058225 &0.010785 &93.6000\% &1.377492 &0.008237 &92.7333\% \\ \hline
+1000 &0.032000 &0.007000 &97.1000\% &0.084406 &0.016624 &94.3000\% &1.788723 &0.008306 &93.3300\% \\ \hline
+1250 &0.037000 &0.006000 &97.1360\% &0.117043 &0.023910 &94.5600\% &1.755750 &0.008938 &95.7760\% \\ \hline
+1500 &0.048000 &0.012000 &97.1733\% &0.159608 &0.034197 &95.1333\% &1.963340 &0.008352 &96.3467\% \\ \hline
+1750 &0.056000 &0.011000 &97.1429\% &0.217431 &0.041878 &95.1429\% &2.205566 &0.008535 &95.7943\% \\ \hline
+2000 &0.061000 &0.012000 &97.4150\% &0.247115 &0.051873 &95.5000\% &2.311722 &0.008987 &93.9900\% \\ \hline
+2250 &0.059000 &0.014000 &97.3422\% &0.322188 &0.062474 &95.1111\% &2.111166 &0.009078 &96.4089\% \\ \hline
+2500 &0.078000 &0.014000 &97.5560\% &0.360570 &0.074148 &95.3200\% &2.840775 &0.008804 &96.5120\% \\ \hline
+2750 &0.080000 &0.015000 &97.5382\% &0.416586 &0.087604 &95.2000\% &3.348820 &0.009248 &95.9673\% \\ \hline
+3000 &0.084000 &0.015000 &97.4500\% &0.455141 &0.098914 &95.2333\% &3.323896 &0.009408 &96.1267\% \\ \hline
+\end{tabular}
+\caption{RS Imagery Classification Performance Comparision among ELM, BP and SVM.}
+\label{specification}
+\end{center}
+}
+\end{table}
+
+The other factor that we will compare is their generalisation performance under various scale of training and testing data sets.
+From Table 2, we can firstly conclude that the testing accuracy of ELM is always higher than that of BP and SVM networks when the training and testing data size increases.
+Second, ELM network can soon reaches high generalization performance, even with small training data set, while the other two networks need more training sampels to assure high generalizatio performance.
+From the columns of TestAcc in Table 2, we can see that the testing accuracy of ELM network is always above 97\%, while BP's highest testing accuracy is about 95\% and SVM's highest is about 96\%.
+Totally, we can argue that the ELM network has better generalization performance than BP and SVM in the application of RS imagery classification, and it needs much less samples to train to get high generalization performance.
+
+\subsection{Change Detection Result Analysis}
+As our change detection method is based on land-cover classification, we firstly category the "before" time and "after" time imagery into five land-cover types and draw the land-cover mappings as shown in Figure 5. 
+Through comparison of the pair of land-cover classification mappings, the detection destination's change trend can be drawn. 
+The cyan area in Figure 6 shows the expansions of urban.
+From this change detection result, we can find that a lot more urban area has been expanded around the original urban area visually.
+Moreover, we provide the proportion change of every type of land-cover in detail, as shown in Figure 7.  
+\begin{figure}[H]
+\centering
+\subfigure["Before" Time]{
+\label{Fig.sub.1}
+\includegraphics[width=0.4\textwidth]{bc.eps}}
+\subfigure["After" Time]{
+\label{Fig.sub.2}
+\includegraphics[width=0.4\textwidth]{ac.eps}}
+\caption{RS Imagery Land-cover Mapping. Whrite area represents urban, blue area represents water, yellow area represents arable land, green area represents vegetation, manenta area represents wetlands.}
+\label{Fig.lable}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{dr.eps}
+\caption{Urban Area Change Detection. The cyan are the new urban area that appears in year 2008, compared to the land-cover of year 2001.}
+\label{method}
+\end{center}
+\end{figure}
+\par
+
+
+Figure 5 shows both the "before" time and "after" time land-cover classification mappings.
+Compared to the original pair of imageries in Figure 2(a)(b), we can visually judge that both mappings truly reflect the actual ground surface of Taihu Lake area.
+In detail, Figure 7 gives the proportion of every land-cover type of both "before" time and "after" land-cover classification mappings.
+
+In fact, as the fast urbanization of Taihu Lake area, the urban area is rapidly expanding, from $30\%$ in year 2001 to $24\%$ in year 2008.
+In contrast, the area of water, arable land and wetlands is shrinking.
+Firgure 8 gives the comparison of every land-cover type between the year 2001 and the year 2008.
+\begin{figure}[H]
+\centering
+\subfigure["Before" Time]{
+\label{Fig.sub.1}
+\includegraphics[width=0.4\textwidth]{bc2.eps}}
+\subfigure["After" Time]{
+\label{Fig.sub.2}
+\includegraphics[width=0.4\textwidth]{ac2.eps}}
+\caption{Land-cover Classification Result}
+\label{Fig.lable}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{dr2.eps}
+\caption{Change Detection Result of Five Different Land-cover Area .}
+\label{method}
+\end{center}
+\end{figure}
+\par
+ 
+
+
+\section{Discussion}
+This paper contributes the first application of ELM to time-series RS imagery processing. 
+We apply ELM neural network to classify both time-series RS imageries and accuratelly detect the land-cover change of Taihu Lake Area from the year 2001 to the year 2008.
+Moreover, through our network training and testing experiments, we prove the ELM's advantages compared to traditional SVM and BP network in the field of RS imagery processing.
+\par
+We design our ELM-based land-cover change detection method as shown in Figure 1.
+In the training unit, we use the simple incremental ELM training method to achieve the proper hidden node number and suitable activation function, in order to get the ELM network with highest generalization.
+Through the analysis of training result shown in Figure 3, we can find that the testing accuracy of our trained network exceeds 97\% when we choose more than 200 hidden nodes and any activation functions except hardlim.
+Thanks to the high generalization performance of ELM when applied in the field of land-cover classification, once the neural network is trained in the training unit, it can be widely applied to the process of large scale RS imageries, which are token and generated by the same method and from the same original satellite data.
+And all the processing of the detection unit, from land-cover classification operation to land-cover mappings comparison, needs no human intervene.
+This characteristic makes it possible to be expanded to paralled computing or distributed computing on cloud infrastructure.
+\par
+One application of our ELM-based land-cover change detection method is to analysis land use change of Taihu Lake Area from the year 2001 to the year 2008.
+The time-series land-cover mappings can be seen in Figure 5, while the urban area change detection mapping are shown in Figure 6.
+When compared to the original time-series RS imageries in Figure 2, we can visually judge that the classification mappings can accurately represent the distribution of five land-cover types.
+When we visually compare the “before” time and “after” time land-cover mappings, we can clearly find the expansion of urban area, which is totally the same   result as shown in Figure 6.
+Moreover, our method can also provide the statistical results, as shown in Figure 7 and Figure 8, which provide more accurate decision making evidences.
+In summary, we can judge that the ELM-based method can accurately detect the change of land-cover.
+\par 
+In order to prove the ELM's advantages of fast training speed and high generalisation performance, compared to traditional SVM and BP network, in the field of RS imagery classification, this paper constructs two experiments, whose results are shown in Figure 4 and Table 2.
+From Figure 4, we can directly conclude that the training time of ELM network, is much less than SVM and BP network, with increasing training data size.
+Moreover, average training time of BP network are unstable and increases greatly, while the average training time of ELM increases nearly linearly and the slope is very small. 
+According to the fast speed of training, ELM can perform better than SVM and BP network when applied to large scale RS imagery samples training or online training with acceptable training time.
+According to Table 2, we can find that ELM's testing accuracy is always higher than SVM and BP network, no matter how large the training and testing data size is.
+We can see that when the training and testing data size increases to 3000, the testing accuracy of ELM reaches more than 97\%, while SVM and BP network only reach about 96\% and 95\%.
+The high generalisation performance makes ELM a better choice than SVM and BP network to apply the samples trained network to the prediction of other RS imageries.
+
+\section{Future Work}
+Presently we have applied our ELM-based land-cover change detection method to the analysis of land use of Taihu Lake Area in the year 2001 and 2008.
+Moreover, our application and comparison experiments prove that ELM can be applied to time-series RS data processing with its faster training speed and higher generalisation performance.
+However, more research topics of large scale time-series RS imagery processing with ELM have been proposed in our research group.
+In fact, the ELM-based land-cover change detection method is designed with high scability and are prepared to be expanded to parallel computing on cloud infrastructure.
+Our further work is to improve the processing efficiency of large scale RS imageries with the computing and storage capability of hdfs and mapreduce based cloud infrastructure.
+Nowdays, cloud based distributed computing has been one of the most popular solutions to deal with rapid growing data.
+To process fast increasing multi-spectral high resolution RS imagery, not only the efficient ELM-based method, but also the distributed computing, should be tried. 
+Our furture work will firstly prove our ELM-based land-cover change detection method's high scability on cloud infrastructure.
+Moreover, based on ELM's capabilty of multi-class classification and regression, RS imagery applications, such as object identification, rainfall estimation, cloud cover evaluation and so on, will be developed.
+Finally, we hope to pay more attention to ELM's capability on online learning, such as OS-ELM, and we consider it a good resolution to the training of large scale RS imageries. 
+Namely, with the help of cloud computing and storage, distributed training of ELM network based on large scale and online training RS imagery samples is our following research focus.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%        Conclusions      %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}\label{conclusion}
+Time-series RS imagery processing, including land-cover change detection, plays a more and more important role in various fields, but has been a problem for some time for various reasons, such as the rapid growth of satellite data size.
+This paper contributes the first application of ELM network to time-series RS imagery processing, and proposes an ELM-based land-cover change detection method with least human intervene and high processing efficincy.
+Thanks to ELM network's fast training speed, high generalisation performance and least human intervene, the land-cover change detection method is designed to deal with large-scale RS imageries.
+As a real application, the land-cover change of Taihu Lake Area, such as the expansion of urban area, from the year 2001 to the year 2008 is accurately detected using our method.
+What's more, our comparison experiments between ELM and SVM, BP network show that ELM do has better training and predicting performance in the classification of RS imagery.
+\bibliography{/home/jychen/Documents/MachineLearning/mypaper/paper/reference}
+
+\end{document} 

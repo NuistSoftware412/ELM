@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: paper.aux
+The style file: ieeetr.bst
+Database file #1: /home/jychen/Documents/MachineLearning/mypaper/paper/reference.bib
+Warning--empty journal in Huang2006
+Warning--empty booktitle in Huang2004
+Warning--empty journal in Huang2003
+Warning--empty journal in Huang1998
+Too many commas in name 1 of "Yu Xiu-Lan, Qian Guo-Hui, Zhou Jian-Lin, Jia Xiao-Guang" for entry YuXiu-Lan1999
+while executing---line 963 of file ieeetr.bst
+Warning--empty journal in YuXiu-Lan1999
+You've used 22 entries,
+            1876 wiz_defined-function locations,
+            633 strings with 8250 characters,
+and the built_in function-call counts, 6668 in all, are:
+= -- 682
+> -- 200
+< -- 0
++ -- 77
+- -- 55
+* -- 461
+:= -- 895
+add.period$ -- 26
+call.type$ -- 22
+change.case$ -- 22
+chr.to.int$ -- 0
+cite$ -- 27
+duplicate$ -- 359
+empty$ -- 633
+format.name$ -- 55
+if$ -- 1665
+int.to.chr$ -- 0
+int.to.str$ -- 22
+missing$ -- 22
+newline$ -- 73
+num.names$ -- 22
+pop$ -- 67
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 270
+stack$ -- 0
+substring$ -- 539
+swap$ -- 167
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 5
+while$ -- 57
+width$ -- 24
+write$ -- 220
+(There was 1 error message)

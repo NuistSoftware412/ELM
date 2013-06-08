@@ -1,0 +1,9 @@
+# PCTeX Project File, Version 1.1
+	name: reference
+	texformat: latex
+	typesetmode: DVI
+	spellwordlist: american
+reference.bib
+	wndpos: 1 -1 -1 -4 -30 110 145 806 517
+	zorder: 0
+	edit: 0
