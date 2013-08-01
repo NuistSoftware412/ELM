@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Apr 05 19:04:37 CST 2013
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=ELM2_fat.jar
+manifest.mergeall=true
+manifest.mainclass=Train
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=
